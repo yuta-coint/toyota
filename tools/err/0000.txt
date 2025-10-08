@@ -1,0 +1,9 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+ Downloading crates ...
+  Downloaded svg v0.13.1
+    Blocking waiting for file lock on package cache
+error: no bin target named `tester` in default-run packages
+help: available bin targets:
+    gen
+    vis
