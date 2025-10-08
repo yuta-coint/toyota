@@ -1,7 +1,7 @@
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
-error: no bin target named `tester` in default-run packages
-help: available bin targets:
-    gen
-    vis
+    Blocking waiting for file lock on build directory
+    Finished `release` profile [optimized] target(s) in 3.62s
+     Running `target/release/tester ../a.out`
+Score = 940432099
