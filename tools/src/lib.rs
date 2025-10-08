@@ -493,33 +493,28 @@ pub fn vis(input: &Input, out: &[(usize, usize)], show_number: bool) -> (i64, St
     (score, err, doc.to_string())
 }
 
-// この関数を、lib.rsの末尾にまるごと追加してください
-pub fn exec(p: &mut Child, seed: u64) -> Result<i64, String> {
-    // 子プロセスの標準入出力へのハンドルを取得
+pub fn exec(p: &mut Child) -> Result<i64, String> {
+    // tester自身の標準入力（pahcerからパイプで渡される）を読み込む
+    let mut input_str = String::new();
+    std::io::stdin().read_to_string(&mut input_str).map_err(|e| e.to_string())?;
+
+    // 読み込んだ文字列をInput構造体にパース
+    let input = parse_input(&input_str);
+
+    // 子プロセス（解答プログラム）に入力を渡す
     let mut stdin = p.stdin.take().ok_or_else(|| "failed to open stdin".to_string())?;
-    let mut stdout = p.stdout.take().ok_or_else(|| "failed to open stdout".to_string())?;
-
-    // 与えられたseedでテストケースを生成
-    let input = gen(seed, None, None);
-
-    // テストケースを子プロセス（解答プログラム）に書き込む
-    let input_str = format!("{}", input);
     stdin.write_all(input_str.as_bytes()).map_err(|e| e.to_string())?;
     drop(stdin);
 
-    // 子プロセスからの出力をすべて読み取る
+    // 子プロセスからの出力を読み取る
     let mut output_str = String::new();
-    stdout.read_to_string(&mut output_str).map_err(|e| e.to_string())?;
+    p.stdout.take().unwrap().read_to_string(&mut output_str).map_err(|e| e.to_string())?;
 
-    // 出力をパースする
+    // 出力をパースしてスコアを計算
     let output = parse_output(&input, &output_str)?;
-
-    // スコアを計算する
     let (score, err) = compute_score(&input, &output.actions);
     if !err.is_empty() {
         return Err(err);
     }
-
-    // スコアを返す
     Ok(score)
 }

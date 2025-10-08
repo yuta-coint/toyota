@@ -191,7 +191,7 @@ int main() {
         }
 
         // 評価関数の更新
-        if (td < 20) {
+        if (td < 30) {
             int r = pt / D, c = pt % D;
             if (c > 0) dtc[pt - 1] = (dtc[pt - 1] > 0) ? dtc[pt - 1] - 100 : dtc[pt - 1] + 15;
             if (c < D - 1) dtc[pt + 1] = (dtc[pt + 1] > 0) ? dtc[pt + 1] - 100 : dtc[pt + 1] + 15;

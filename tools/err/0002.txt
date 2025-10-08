@@ -1,7 +1,6 @@
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
-   Compiling tools v1.0.0 (/mnt/c/Users/y2002/toyota/tools)
-    Finished `release` profile [optimized] target(s) in 2.34s
+    Blocking waiting for file lock on build directory
+    Finished `release` profile [optimized] target(s) in 3.95s
      Running `target/release/tester ../a.out`
-Score = 940432099
