@@ -1,5 +1,5 @@
     Blocking waiting for file lock on build directory
-    Finished `release` profile [optimized] target(s) in 3.32s
+    Finished `release` profile [optimized] target(s) in 3.27s
      Running `target/release/tester ../a.out`
 73 Candidate: 5, Eval: -885
 73 Candidate: 7, Eval: -880
@@ -36,6 +36,7 @@
 71 Candidate: 62, Eval: -275
 71 Candidate: 68, Eval: -185
 71 Candidate: 70, Eval: -180
+71 Candidate: 76, Eval: -75
 76 Candidate: 11, Eval: -780
 76 Candidate: 21, Eval: -680
 76 Candidate: 32, Eval: -600
@@ -46,18 +47,24 @@
 76 Candidate: 59, Eval: -300
 76 Candidate: 62, Eval: -275
 76 Candidate: 68, Eval: -185
-76 Candidate: 69, Eval: -180
+76 Candidate: 70, Eval: -180
 75 Candidate: 14, Eval: -780
 75 Candidate: 21, Eval: -680
 75 Candidate: 32, Eval: -600
 75 Candidate: 34, Eval: -585
-75 Candidate: 42, Eval: -485
+75 Candidate: 42, Eval: -500
 75 Candidate: 43, Eval: -480
-75 Candidate: 50, Eval: -380
+75 Candidate: 50, Eval: -400
+75 Candidate: 51, Eval: -380
+75 Candidate: 59, Eval: -280
 77 Candidate: 14, Eval: -780
 77 Candidate: 21, Eval: -680
 77 Candidate: 32, Eval: -600
 77 Candidate: 34, Eval: -585
-77 Candidate: 42, Eval: -485
+77 Candidate: 42, Eval: -500
 77 Candidate: 43, Eval: -480
-72 Candidate: 67, Eval: -10175
+77 Candidate: 50, Eval: -385
+77 Candidate: 51, Eval: -380
+77 Candidate: 58, Eval: -275
+72 Candidate: 23, Eval: -680
+72 Candidate: 33, Eval: -575

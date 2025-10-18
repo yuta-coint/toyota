@@ -269,16 +269,13 @@ int main() {
             int eval = 0;
             // 評価を計算する。
             eval -= abs(sanctuary_free_moderate[td] - c/D) * 100;
-            if (sanctuary[c/D][c%D]) {
+            if (sanctuary[c/D][c%D] && empty_count[c] > 1){
                 eval -= 10000; // 聖域内は大幅にペナルティ
             }
             if (empty_count[c] < 4) {
                 eval += 30 - empty_count[c] * 5;
             }
             if (eval > evaluation) {
-                if (td > 70){
-                    cerr << td <<  " "<< "Candidate: " << c << ", Eval: " << eval << endl;
-                }
                 evaluation = eval;
                 pt = c;
             }
@@ -394,7 +391,5 @@ for (int i = 0; i < num_to_place; ++i) {
             cout << p / D << " " << p % D << endl;
         }
     }
-
-
     return 0;
 }

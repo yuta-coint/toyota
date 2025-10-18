@@ -1,5 +1,5 @@
     Blocking waiting for file lock on build directory
-    Finished `release` profile [optimized] target(s) in 3.80s
+    Finished `release` profile [optimized] target(s) in 3.42s
      Running `target/release/tester ../a.out`
 71 Candidate: 5, Eval: -10885
 71 Candidate: 6, Eval: -885
@@ -23,6 +23,8 @@
 72 Candidate: 26, Eval: -675
 72 Candidate: 33, Eval: -585
 72 Candidate: 42, Eval: -485
-72 Candidate: 52, Eval: -375
+72 Candidate: 51, Eval: -400
+72 Candidate: 52, Eval: -380
 72 Candidate: 57, Eval: -285
-72 Candidate: 60, Eval: -280
+72 Candidate: 61, Eval: -280
+72 Candidate: 68, Eval: -175
