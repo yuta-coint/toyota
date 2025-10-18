@@ -1,64 +1,6 @@
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
-    Blocking waiting for file lock on package cache
     Blocking waiting for file lock on build directory
-    Finished `release` profile [optimized] target(s) in 3.47s
+    Finished `release` profile [optimized] target(s) in 1.22s
      Running `target/release/tester ../a.out`
-72 Candidate: 5, Eval: -885
-72 Candidate: 7, Eval: -880
-72 Candidate: 11, Eval: -785
-72 Candidate: 20, Eval: -685
-72 Candidate: 28, Eval: -580
-72 Candidate: 37, Eval: -485
-72 Candidate: 46, Eval: -380
-72 Candidate: 56, Eval: -280
-72 Candidate: 66, Eval: -185
-72 Candidate: 74, Eval: -75
-75 Candidate: 5, Eval: -885
-75 Candidate: 7, Eval: -880
-75 Candidate: 11, Eval: -780
-75 Candidate: 21, Eval: -685
-75 Candidate: 28, Eval: -580
-75 Candidate: 37, Eval: -485
-75 Candidate: 46, Eval: -380
-75 Candidate: 56, Eval: -280
-75 Candidate: 66, Eval: -185
-75 Candidate: 75, Eval: -80
-76 Candidate: 5, Eval: -885
-76 Candidate: 7, Eval: -880
-76 Candidate: 12, Eval: -780
-76 Candidate: 23, Eval: -700
-76 Candidate: 26, Eval: -685
-76 Candidate: 28, Eval: -580
-76 Candidate: 37, Eval: -485
-76 Candidate: 46, Eval: -380
-76 Candidate: 56, Eval: -280
-76 Candidate: 68, Eval: -200
-76 Candidate: 70, Eval: -185
-76 Candidate: 77, Eval: -85
-76 Candidate: 79, Eval: -80
-71 Candidate: 5, Eval: -885
-71 Candidate: 7, Eval: -880
-71 Candidate: 14, Eval: -800
-71 Candidate: 15, Eval: -785
-71 Candidate: 23, Eval: -685
-71 Candidate: 28, Eval: -575
-71 Candidate: 41, Eval: -500
-71 Candidate: 44, Eval: -485
-71 Candidate: 46, Eval: -375
-71 Candidate: 56, Eval: -280
-71 Candidate: 68, Eval: -200
-71 Candidate: 70, Eval: -180
-71 Candidate: 77, Eval: -80
-74 Candidate: 5, Eval: -885
-74 Candidate: 6, Eval: -880
-74 Candidate: 14, Eval: -785
-74 Candidate: 16, Eval: -780
-74 Candidate: 32, Eval: -585
-74 Candidate: 34, Eval: -580
-74 Candidate: 41, Eval: -500
-74 Candidate: 43, Eval: -485
-74 Candidate: 47, Eval: -375
-74 Candidate: 59, Eval: -285
-73 Candidate: 13, Eval: -775

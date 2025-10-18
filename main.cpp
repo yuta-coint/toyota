@@ -173,7 +173,7 @@ int main() {
     int r = D - 1 , c = nearest_c;
     while (r != 0 || c != 4) {
         sanctuary[r][c] = true;
-        int directions[4][2] = {{-1,0},{1,0},{0,-1},{0,1}};
+        int directions[4][2] = {{0,-1},{0,1},{-1,0},{1,0}};
         for (auto& dir : directions) {
             int nr = r + dir[0];
             int nc = c + dir[1];

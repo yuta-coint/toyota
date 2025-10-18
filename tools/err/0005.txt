@@ -2,37 +2,5 @@
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on build directory
-    Finished `release` profile [optimized] target(s) in 1.16s
+    Finished `release` profile [optimized] target(s) in 1.78s
      Running `target/release/tester ../a.out`
-72 Candidate: 5, Eval: -885
-72 Candidate: 11, Eval: -800
-72 Candidate: 16, Eval: -785
-72 Candidate: 19, Eval: -700
-72 Candidate: 26, Eval: -680
-72 Candidate: 27, Eval: -580
-72 Candidate: 37, Eval: -485
-72 Candidate: 45, Eval: -375
-72 Candidate: 56, Eval: -285
-72 Candidate: 63, Eval: -175
-72 Candidate: 74, Eval: -80
-73 Candidate: 5, Eval: -885
-73 Candidate: 11, Eval: -800
-73 Candidate: 16, Eval: -785
-73 Candidate: 19, Eval: -700
-73 Candidate: 26, Eval: -680
-73 Candidate: 27, Eval: -580
-73 Candidate: 37, Eval: -480
-73 Candidate: 47, Eval: -385
-73 Candidate: 56, Eval: -285
-73 Candidate: 65, Eval: -180
-73 Candidate: 76, Eval: -85
-73 Candidate: 79, Eval: -80
-71 Candidate: 5, Eval: -875
-71 Candidate: 11, Eval: -800
-71 Candidate: 22, Eval: -680
-71 Candidate: 31, Eval: -585
-71 Candidate: 40, Eval: -500
-71 Candidate: 43, Eval: -475
-71 Candidate: 50, Eval: -400
-71 Candidate: 60, Eval: -280
-71 Candidate: 67, Eval: -180
