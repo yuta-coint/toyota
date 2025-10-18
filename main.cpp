@@ -105,6 +105,27 @@ int main() {
     int D, initial_blocks;
     cin >> D >> initial_blocks;
 
+    //各マスについて、「周りに空きマスがいくつあるか」を管理する。
+    vector<int> empty_count(D*D, 0);
+    //すでに登場したブロックの番号を管理する。
+    vector<bool> appeared(D*D, false);
+    // 初期化: empty_count を blocked に基づいて作る
+    for (int r = 0; r < D; ++r) {
+        for (int c = 0; c < D; ++c) {
+            int idx = r * D + c;
+            int count = 0;
+            if (r > 0 && blocked.count((r - 1) * D + c) == 0) count++; // 上
+            if (r < D - 1 && blocked.count((r + 1) * D + c) == 0) count++; // 下
+            if (c > 0 && blocked.count(r * D + (c - 1)) == 0) count++; // 左
+            if (c < D - 1 && blocked.count(r * D + (c + 1)) == 0) count++; // 右
+            empty_count[idx] = count;
+        }
+    }
+    // 各マスについて、「周囲のマスについて一番小さいのは何か」を管理する。
+    vector<int> min_containar(D*D, 0);
+    // 各マスについて、「自分より小さいのがあるか」を管理する。
+    vector<bool> has_smaller(D*D, false);
+
     for (int i = 0; i < initial_blocks; ++i) {
         int r, c;
         cin >> r >> c;
@@ -112,31 +133,62 @@ int main() {
         initial_obstacles.insert(r * D + c);
     }
 
-    // === 評価関数の事前計算 ===
-    vector<int> dtc(N), dtc2(N), dtc3(N);
-    for (int i = 0; i < N; ++i) {
-        int r = i / D;
-        int c = i % D;
-        dtc[i] = r * 2 + abs(c - 4);
-        if (c == 0 || c == D - 1 || r == D - 1) dtc[i] += 15;
-        if ((blocked.count(i - 1) || blocked.count(i + 1)) &&
-            (blocked.count(i - D) || blocked.count(i + D))) {
-            dtc[i] += 30;
-        }
+    vector<int> cntn(N, -1);
+    int num_to_place = D * D - 1 - initial_blocks;
 
-        dtc2[i] = r * 2 + abs(c - 4);
-        if (r + c <= 1 || r - c <= -7 || c + r >= 15 || r - c >= 7) {
-            dtc2[i] -= 10;
-        }
-
-        dtc3[i] = r * 2 + abs(c - 4);
-        if (r + c <= 1 || r - c <= -7 || c + r >= 15 || r - c >= 7 || r == D - 1 || c == 0 || c == D - 1) {
-            dtc3[i] -= 10;
+    //　入り口から奥までの最短経路を事前計算しておく
+    vector<vector<int>> dist_from_entrance(D, vector<int>(D, -1));
+    queue<pair<int, int>> q;
+    int entrance = 4; // (0,4) の位置
+    dist_from_entrance[entrance/D][entrance%D] = 0;
+    q.push({entrance/D, entrance%D});
+    while (!q.empty()) {
+        auto [r, c] = q.front();
+        q.pop();
+        int d = dist_from_entrance[r][c];
+        int directions[4][2] = {{-1,0},{1,0},{0,-1},{0,1}};
+        for (auto& dir : directions) {
+            int nr = r + dir[0];
+            int nc = c + dir[1];
+            if (nr >= 0 && nr < D && nc >= 0 && nc < D) {
+                int np = nr * D + nc;
+                if (dist_from_entrance[nr][nc] == -1 && blocked.count(np) == 0) {
+                    dist_from_entrance[nr][nc] = d + 1;
+                    q.push({nr, nc});
+                }
+            }
         }
     }
 
-    vector<int> cntn(N, -1);
-    int num_to_place = D * D - 1 - initial_blocks;
+    // dist_from_entrance[D-1]の最小値に対応する地点への最短経路を復元する
+    vector<vector<bool>> sanctuary(D, vector<bool>(D, false));
+    int min_dist = 1e9;
+    int nearest_c = -1;
+    for (int c = 0; c < D; ++c) {
+        if (dist_from_entrance[D-1][c] != -1 && dist_from_entrance[D-1][c] < min_dist) {
+            min_dist = dist_from_entrance[D-1][c];
+            nearest_c = c;
+        }
+    }
+    int r = D - 1 , c = nearest_c;
+    while (r != 0 || c != 4) {
+        sanctuary[r][c] = true;
+        int directions[4][2] = {{-1,0},{1,0},{0,-1},{0,1}};
+        for (auto& dir : directions) {
+            int nr = r + dir[0];
+            int nc = c + dir[1];
+            if (nr >= 0 && nr < D && nc >= 0 && nc < D) {
+                if (dist_from_entrance[nr][nc] == dist_from_entrance[r][c] - 1) {
+                    r = nr;
+                    c = nc;
+                    break;
+                }
+            }
+        }
+    }
+    sanctuary[0][4] = true; //入り口も聖域に含める
+
+
 
     // === コンテナ配置フェーズ ===
     for (int k = 0; k < num_to_place; ++k) {
@@ -176,31 +228,73 @@ int main() {
             }
         }
 
+        // 聖域の外のマスについて、rが小さい順に番号を付ける。
+        // 各rについて、聖域以外の空きマスを数える
+        vector<int> empty_place_counts(D + 1,0);
+        empty_place_counts[D] = 1e9; // 番兵
+        for (int r = 0; r < D; ++r) {
+            int count = 0;
+                for (int c = 0; c < D; ++c) {
+                int p = r * D + c;
+                if (sanctuary[r][c] == false && blocked.count(p) == 0) {
+                    count++;
+                }
+            }
+            empty_place_counts[r] = count;
+        }
+
+        vector<int> sanctuary_free_moderate(D*D, 0);
+        int r = 0;
+        for (int i = 0; i < D*D; ++i){
+            if (appeared[i]) {
+                sanctuary_free_moderate[i] = D; // 番兵
+                continue;
+            }
+            while (empty_place_counts[r] == 0){
+                r++;
+            }
+            sanctuary_free_moderate[i] = r;
+            empty_place_counts[r]--;
+        }
+        // //sanctuary_free_moderateを出力
+        // cerr<<"sanctuary_free_moderate: ";
+        // for (int i = 0; i < D*D; ++i){
+        //     cerr<<sanctuary_free_moderate[i]<<" ";
+        // }
+
         // 最適な配置場所を選択
         int pt = candidates[0];
+        int evaluation = -1e9;
         for (int c : candidates) {
-            if (td < 20) {
-                if (dtc[c] < dtc[pt]) pt = c;
-            } else if (td > 60 - initial_blocks) {
-                if (dtc[c] > dtc[pt]) pt = c;
-            } else if (td < 40) {
-                if (dtc3[c] > dtc3[pt]) pt = c;
-            } else {
-                if (dtc2[c] > dtc2[pt]) pt = c;
+            int eval = 0;
+            // 評価を計算する。
+            eval -= abs(sanctuary_free_moderate[td] - c/D) * 100;
+            if (sanctuary[c/D][c%D]) {
+                eval -= 10000; // 聖域内は大幅にペナルティ
+            }
+            if (empty_count[c] < 4) {
+                eval += 30 - empty_count[c] * 5;
+            }
+            if (eval > evaluation) {
+                if (td > 70){
+                    cerr << td <<  " "<< "Candidate: " << c << ", Eval: " << eval << endl;
+                }
+                evaluation = eval;
+                pt = c;
             }
         }
 
-        // 評価関数の更新
-        if (td < 30) {
-            int r = pt / D, c = pt % D;
-            if (c > 0) dtc[pt - 1] = (dtc[pt - 1] > 0) ? dtc[pt - 1] - 100 : dtc[pt - 1] + 15;
-            if (c < D - 1) dtc[pt + 1] = (dtc[pt + 1] > 0) ? dtc[pt + 1] - 100 : dtc[pt + 1] + 15;
-            if (r > 0) dtc[pt - D] = (dtc[pt - D] > 0) ? dtc[pt - D] - 100 : dtc[pt - D] + 15;
-            if (r < D - 1) dtc[pt + D] = (dtc[pt + D] > 0) ? dtc[pt + D] - 100 : dtc[pt + D] + 15;
-        }
+        // 周囲の empty_count を更新
+        int c;
+        r = pt / D;c = pt % D;
+        if (r > 0) empty_count[(r - 1) * D + c]--;
+        if (r < D - 1) empty_count[(r + 1) * D + c]--;
+        if (c > 0) empty_count[r * D + (c - 1)]--;
+        if (c < D - 1) empty_count[r * D + (c + 1)]--;
 
         cout << pt / D << " " << pt % D << endl;
         cntn[pt] = td;
+        appeared[td] = true;
         blocked.insert(pt);
     }
 

@@ -2,6 +2,82 @@
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
     Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on shared package cache
     Blocking waiting for file lock on build directory
-    Finished `release` profile [optimized] target(s) in 2.14s
+    Finished `release` profile [optimized] target(s) in 2.51s
      Running `target/release/tester ../a.out`
+79 Candidate: 5, Eval: -885
+79 Candidate: 8, Eval: -880
+79 Candidate: 10, Eval: -780
+79 Candidate: 21, Eval: -685
+79 Candidate: 30, Eval: -585
+79 Candidate: 36, Eval: -480
+79 Candidate: 45, Eval: -385
+79 Candidate: 54, Eval: -280
+79 Candidate: 64, Eval: -180
+79 Candidate: 75, Eval: -80
+74 Candidate: 5, Eval: -885
+74 Candidate: 8, Eval: -880
+74 Candidate: 12, Eval: -785
+74 Candidate: 21, Eval: -685
+74 Candidate: 30, Eval: -585
+74 Candidate: 37, Eval: -480
+74 Candidate: 45, Eval: -380
+74 Candidate: 54, Eval: -280
+74 Candidate: 65, Eval: -180
+74 Candidate: 77, Eval: -85
+74 Candidate: 79, Eval: -80
+76 Candidate: 5, Eval: -885
+76 Candidate: 8, Eval: -880
+76 Candidate: 14, Eval: -800
+76 Candidate: 17, Eval: -785
+76 Candidate: 21, Eval: -680
+76 Candidate: 30, Eval: -585
+76 Candidate: 37, Eval: -480
+76 Candidate: 46, Eval: -385
+76 Candidate: 55, Eval: -280
+76 Candidate: 66, Eval: -180
+76 Candidate: 77, Eval: -85
+76 Candidate: 78, Eval: -80
+75 Candidate: 5, Eval: -885
+75 Candidate: 7, Eval: -875
+75 Candidate: 14, Eval: -800
+75 Candidate: 15, Eval: -785
+75 Candidate: 23, Eval: -700
+75 Candidate: 25, Eval: -685
+75 Candidate: 26, Eval: -680
+75 Candidate: 30, Eval: -580
+75 Candidate: 37, Eval: -475
+75 Candidate: 47, Eval: -385
+75 Candidate: 56, Eval: -280
+75 Candidate: 68, Eval: -200
+75 Candidate: 69, Eval: -185
+75 Candidate: 71, Eval: -180
+75 Candidate: 77, Eval: -80
+72 Candidate: 6, Eval: -875
+72 Candidate: 14, Eval: -785
+72 Candidate: 23, Eval: -700
+72 Candidate: 24, Eval: -680
+72 Candidate: 32, Eval: -600
+72 Candidate: 34, Eval: -585
+72 Candidate: 35, Eval: -580
+72 Candidate: 37, Eval: -475
+72 Candidate: 48, Eval: -385
+72 Candidate: 57, Eval: -280
+72 Candidate: 68, Eval: -180
+71 Candidate: 6, Eval: -875
+71 Candidate: 23, Eval: -685
+71 Candidate: 24, Eval: -680
+71 Candidate: 32, Eval: -600
+71 Candidate: 34, Eval: -580
+71 Candidate: 38, Eval: -475
+71 Candidate: 50, Eval: -400
+71 Candidate: 53, Eval: -385
+71 Candidate: 59, Eval: -285
+71 Candidate: 62, Eval: -280
+78 Candidate: 5, Eval: -875
+78 Candidate: 24, Eval: -675
+78 Candidate: 43, Eval: -475
+77 Candidate: 23, Eval: -675
+77 Candidate: 42, Eval: -475
+73 Candidate: 22, Eval: -10675
